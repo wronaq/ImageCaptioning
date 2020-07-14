@@ -1,3 +1,13 @@
+.ipynb_checkpoints/
+models/
+.vscode/
+*.html
+4_Zip Your Project Files and Submit.ipynb
+filelist.txt
+*.pdf
+*.zip
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
