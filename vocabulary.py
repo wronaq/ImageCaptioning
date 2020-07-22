@@ -4,16 +4,18 @@ import os.path
 from pycocotools.coco import COCO
 from collections import Counter
 
-class Vocabulary(object):
 
-    def __init__(self,
+class Vocabulary(object):
+    def __init__(
+        self,
         vocab_threshold,
-        vocab_file='./vocab.pkl',
+        vocab_file="./vocab.pkl",
         start_word="<start>",
         end_word="<end>",
         unk_word="<unk>",
-        annotations_file='../cocoapi/annotations/captions_train2014.json',
-        vocab_from_file=False):
+        annotations_file="../cocoapi/annotations/captions_train2014.json",
+        vocab_from_file=False,
+    ):
         """Initialize the vocabulary.
         Args:
           vocab_threshold: Minimum word count threshold.
@@ -37,16 +39,16 @@ class Vocabulary(object):
     def get_vocab(self):
         """Load the vocabulary from file OR build the vocabulary from scratch."""
         if os.path.exists(self.vocab_file) & self.vocab_from_file:
-            with open(self.vocab_file, 'rb') as f:
+            with open(self.vocab_file, "rb") as f:
                 vocab = pickle.load(f)
                 self.word2idx = vocab.word2idx
                 self.idx2word = vocab.idx2word
-            print('Vocabulary successfully loaded from vocab.pkl file!')
+            print("Vocabulary successfully loaded from vocab.pkl file!")
         else:
             self.build_vocab()
-            with open(self.vocab_file, 'wb') as f:
+            with open(self.vocab_file, "wb") as f:
                 pickle.dump(self, f)
-        
+
     def build_vocab(self):
         """Populate the dictionaries for converting tokens to integers (and vice-versa)."""
         self.init_vocab()
@@ -74,7 +76,7 @@ class Vocabulary(object):
         counter = Counter()
         ids = coco.anns.keys()
         for i, id in enumerate(ids):
-            caption = str(coco.anns[id]['caption'])
+            caption = str(coco.anns[id]["caption"])
             tokens = nltk.tokenize.word_tokenize(caption.lower())
             counter.update(tokens)
 
