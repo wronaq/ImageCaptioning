@@ -37,8 +37,8 @@ def split_val_test_set(
     np.random.shuffle(pics_ids)
     val_ids = pics_ids[:split]
     test_ids = pics_ids[split:]
-    val_files = [f"COCO_val2014_{str(i).zfill(12)}.jpg" for i in val_ids]
-    test_files = [f"COCO_val2014_{str(i).zfill(12)}.jpg" for i in test_ids]
+    val_files = ["COCO_val2014_{}.jpg".format(str(i).zfill(12)) for i in val_ids]
+    test_files = ["COCO_val2014_{}.jpg".format(str(i).zfill(12)) for i in test_ids]
 
     ## ANNOTATIONS
     # split to new validation and test
@@ -69,15 +69,15 @@ def split_val_test_set(
     # make new folders and move files
     shutil.os.system("mkdir /opt/cocoapi/images/val2014")
     for file in tqdm(val_files):
-        shutil.os.system(f"cp {images_dir+file} /opt/cocoapi/images/val2014")
+        shutil.os.system("cp {} /opt/cocoapi/images/val2014".format(images_dir+file))
 
     shutil.os.system("mkdir /opt/cocoapi/images/test2014")
     for file in tqdm(test_files):
-        shutil.os.system(f"cp {images_dir+file} /opt/cocoapi/images/test2014")
+        shutil.os.system("cp {} /opt/cocoapi/images/test2014".format(images_dir+file))
 
     ## REMOVE redundant files
-    shutil.os.system(f"rm -rf {images_dir}")
-    shutil.os.system(f"rm -f {annotations_file}")
+    shutil.os.system("rm -rf {}".format(images_dir))
+    shutil.os.system("rm -f {}".format(annotations_file))
 
     print("All done.")
 

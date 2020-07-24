@@ -2,7 +2,6 @@ pycocotools>=2.0.1
 numpy>=1.12.1
 scikit-image>=0.14.2
 matplotlib>=2.1.0
-nltk>=3.2.5
 torchvision>=0.2.1
 torch>=0.4.0
 requests>=2.18.4

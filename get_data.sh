@@ -21,7 +21,7 @@ unzip train2014.zip -d /opt/cocoapi/images
 echo '5. Train dataset unziped.'
 unzip val2014.zip -d /opt/cocoapi/images
 echo '6. Validation dataset unziped.'
-unzip annotations_trainval2014.zip -d /opt/cocoapi/annotations
+unzip annotations_trainval2014.zip -d /opt/cocoapi
 echo '7. Annotations unziped. Deleting redundant files.'
 
 # rename
