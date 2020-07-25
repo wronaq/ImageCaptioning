@@ -110,7 +110,7 @@ def get_loader(
         )
     else:  # mode==test and val
         data_loader = data.DataLoader(
-            dataset=dataset, num_workers=num_workers, batch_size=dataset.batch_size,
+            dataset=dataset, num_workers=num_workers, batch_size=dataset.batch_size, shuffle=True
         )
 
     return data_loader
@@ -147,7 +147,7 @@ class CoCoDataset(data.Dataset):
 
         self.coco = COCO(annotations_file)
         self.ids = list(self.coco.anns.keys())
-        if self.mode != "test":
+        if self.mode == "train":
             print("Obtaining caption lengths...")
             all_tokens = [
                 nltk.tokenize.word_tokenize(
@@ -178,7 +178,7 @@ class CoCoDataset(data.Dataset):
 
         # return pre-processed image and caption tensors
         if self.mode == "test":
-            return image, caption, org_image
+            return image, caption, np.array(org_image)
 
         return image, caption
 

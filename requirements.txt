@@ -7,3 +7,4 @@ torch>=0.4.0
 requests>=2.18.4
 pycocotools>=2.0.1
 nltk>=3.5
+statsmodels>=0.11.1
